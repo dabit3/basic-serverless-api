@@ -22,5 +22,20 @@
 			]
 		}
 	},
-	"api": {}
+	"api": {
+		"api7d641705": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "testing067f3506",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	}
 }

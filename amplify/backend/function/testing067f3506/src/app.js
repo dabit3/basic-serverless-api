@@ -20,11 +20,10 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
+const AWS = require('aws-sdk')
 const uuid = require('uuid/v4')
-var environment = process.env.ENV
 var region = process.env.REGION
 var ddb_table_name = process.env.STORAGE_DYNAMOB1B4533E_NAME
-var storageDynamob1b4533eArn = process.env.STORAGE_DYNAMOB1B4533E_ARN
 const docClient = new AWS.DynamoDB.DocumentClient({region})
 
 // declare a new express app

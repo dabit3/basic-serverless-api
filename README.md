@@ -55,3 +55,175 @@ Storage category has a resource called <table_name>
 Please edit the file in your editor: my-app/amplify/backend/function/<function_name>/src/index.js
 ? Press enter to continue
 ```
+
+Next, update the function with the following changes:
+
+```javascript
+// add these imports
+const AWS = require('aws-sdk')
+const uuid = require('uuid/v4')
+const docClient = new AWS.DynamoDB.DocumentClient({region})
+// region and table name available in comments of lambda function
+const region = process.env.REGION
+const ddb_table_name = process.env.<YOUR_STORAGE_NAME>
+
+
+// update the /products "get" and "post" endpoints
+ 
+app.get('/products', async function(req, res) {
+  try {
+    var params = {
+      TableName: ddb_table_name,
+    }
+    const data = await docClient.scan(params).promise()
+    res.json({
+      data: data
+    })
+  } catch (err) {
+    res.json({
+      error: err
+    })
+  }
+})
+
+app.post('/products', async function(req, res) {
+  const { body } = req
+  try {
+    const input = { ...body, id: uuid() }
+    var params = {
+      TableName: ddb_table_name,
+      Item: input
+    }
+    await docClient.put(params).promise()
+    res.json({
+      success: 'item saved to database..'
+    })
+  } catch (err) {
+    res.json({
+      error: err
+    })
+  }
+})
+```
+
+Next, update the dependencies in the lambda function to include uuid:
+
+__my-app/amplify/backend/function/<function_name>/src/index.js__
+
+```json
+"dependencies": {
+  "aws-serverless-express": "^3.3.5",
+  "body-parser": "^1.17.1",
+  "express": "^4.15.2",
+  "uuid": "^3.3.3"
+},
+```
+
+Next, deploy the back end:
+
+```sh
+$ amplify push
+```
+
+### Client-side code
+
+Next, open __src/index.js__ and add the following:
+
+```javascript
+import Amplify from 'aws-amplify'
+import config from './aws-exports'
+Amplify.configure(config)
+```
+
+Next, open __src/App.js__ and add the following code:
+
+```javascript
+import React, { useEffect, useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { API } from 'aws-amplify'
+
+const initialState = {
+  name: '',
+  description: '',
+  price: ''
+}
+
+function App() {
+  const [products, setProducts] = useState([])
+  const [product, updateProduct] = useState(initialState)
+  async function fetchProducts() {
+    const products = await API.get('api7d641705', '/products')
+    setProducts(products.data.Items)
+  }
+  async function createProduct() {
+    const { name, description, price } = product
+    if (!name || !description || !price) return
+    const data = {
+      body: { ...product, price: parseInt(product.price) }
+    }
+    await API.post('api7d641705', '/products', data)
+    console.log('product successfully created...')
+    updateProduct(initialState)
+    fetchProducts()
+  }
+  const updateProductInput = key => event => {
+    updateProduct({ ...product, [key]: event.target.value })
+  }
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+  return (
+    <div className="App">
+      {
+        products.map((product, index) => (
+          <div key={index}>
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <h4>{product.price}</h4>
+          </div>
+        ))
+      }
+      <div style={form}>
+        <input
+          placeholder="Product name"
+          value={product.name}
+          onChange={updateProductInput("name")}
+          style={input}
+        />
+        <input
+          placeholder="Product description"
+          value={product.description}
+          onChange={updateProductInput("description")}
+          style={input}
+        />
+        <input
+          placeholder="Product price"
+          value={product.price}
+          onChange={updateProductInput("price")}
+          style={input}
+        />
+        <button style={button} onClick={createProduct}>Create Product</button>
+      </div>
+    </div>
+  );
+}
+
+const button = {
+  padding: '10px 40px',
+  width: 400,
+  margin:  '0px auto'
+}
+
+const input = {
+  padding: 7,
+  width: 400,
+  margin: '0px auto 6px'
+}
+
+const form = {
+  display: 'flex', flexDirection: 'column', padding: 60
+}
+
+export default App;
+```

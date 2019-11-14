@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/products",
+            "lambdaFunction": "testing067f3506",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "api7d641705",
+    "apiName": "api7d641705",
+    "functionArns": [
+        {
+            "lambdaFunction": "testing067f3506"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-testing-testenv-142557-authRole",
+        "unAuthRoleName": "amplify-testing-testenv-142557-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "testing067f3506",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
