@@ -1,0 +1,12 @@
+{
+    "permissions": {
+        "storage": {
+            "dynamob1b4533e": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

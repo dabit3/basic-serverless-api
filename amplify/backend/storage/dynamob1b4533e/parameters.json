@@ -1,0 +1,7 @@
+{
+    "tableName": "dynamob1b4533e",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S",
+    "sortKeyName": "name",
+    "sortKeyType": "S"
+}
