@@ -9,7 +9,7 @@ Create the React project, install dependencies
 ```sh
 $ npx create-react-app serverless-api
 
-$ cd  serverless-api
+$ cd serverless-api
 
 $ npm install aws-amplify
 ```
