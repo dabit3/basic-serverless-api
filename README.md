@@ -52,7 +52,7 @@ $ amplify add api
 ? Provide the AWS Lambda function name: <function_name>
 ? Choose the function template that you want to use: Serverless express function (Integration with Amazon API Gateway)
 ? Do you want to access other resources created in this project from your Lambda function? Yes
-? Select the category storage
+? Select the category: storage
 Storage category has a resource called <table_name>
 ? Select the operations you want to permit for <table_name> create, read, update, delete
 ? Do you want to edit the local lambda function now? Yes
