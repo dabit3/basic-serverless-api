@@ -58,17 +58,7 @@ Please edit the file in your editor: my-app/amplify/backend/function/<function_n
 ? Would you like to add another path? N
 ```
 
-Next, install the uuid library in the function __src__ directory:
-
-```sh
-$ cd amplify/backend/function/<funciton_name>/src
-
-$ npm install uuid
-
-$ cd ../../../../../
-```
-
-Now, update the function with the following changes:
+Next, update the function with the following changes:
 
 ```javascript
 // add these imports
