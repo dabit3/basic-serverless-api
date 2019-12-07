@@ -45,7 +45,7 @@ Next, create the API:
 $ amplify add api
 
 ? Please select from one of the below mentioned services: REST
-? Provide a friendly name for your resource to be used as a label for this category in the project: <api_name>
+? Provide a friendly name for your resource to be used as a label for this category in the project: productapi
 ? Provide a path (e.g., /items) /products
 ? Choose a Lambda source: Create a new Lambda function
 ? Provide a friendly name for your resource to be used as a label for this category in the project: <function_name>
@@ -158,7 +158,7 @@ function App() {
   const [products, setProducts] = useState([])
   const [product, updateProduct] = useState(initialState)
   async function fetchProducts() {
-    const products = await API.get('api7d641705', '/products')
+    const products = await API.get('productapi', '/products')
     setProducts(products.data.Items)
   }
   async function createProduct() {
@@ -167,7 +167,7 @@ function App() {
     const data = {
       body: { ...product, price: parseInt(product.price) }
     }
-    await API.post('api7d641705', '/products', data)
+    await API.post('productapi', '/products', data)
     console.log('product successfully created...')
     updateProduct(initialState)
     fetchProducts()
