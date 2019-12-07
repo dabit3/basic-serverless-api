@@ -56,7 +56,7 @@ $ amplify add api
 Storage category has a resource called <table_name>
 ? Select the operations you want to permit for <table_name> create, read, update, delete
 ? Do you want to edit the local lambda function now? Yes
-Please edit the file in your editor: my-app/amplify/backend/function/<function_name>/src/index.js
+Please edit the file in your editor: amplify/backend/function/<function_name>/src/app.js
 ? Press enter to continue
 ? Would you like to restrict API access? N
 ? Would you like to add another path? N
@@ -65,7 +65,9 @@ Please edit the file in your editor: my-app/amplify/backend/function/<function_n
 Next, update the function with the following changes:
 
 ```javascript
-// region and table name available in comments of lambda function
+/* amplify/backend/function/<function_name>/src/app.js */
+
+/* region and table name available in comments of lambda function */
 const region = process.env.REGION
 const ddb_table_name = process.env.<YOUR_STORAGE_NAME>
 
