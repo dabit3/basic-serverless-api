@@ -54,9 +54,21 @@ Storage category has a resource called <table_name>
 ? Do you want to edit the local lambda function now? Yes
 Please edit the file in your editor: my-app/amplify/backend/function/<function_name>/src/index.js
 ? Press enter to continue
+? Would you like to restrict API access? N
+? Would you like to add another path? N
 ```
 
-Next, update the function with the following changes:
+Next, install the uuid library in the function __src__ directory:
+
+```sh
+$ cd amplify/backend/function/<funciton_name>/src
+
+$ npm install uuid
+
+$ cd ../../../../../
+```
+
+Now, update the function with the following changes:
 
 ```javascript
 // add these imports
@@ -66,7 +78,6 @@ const docClient = new AWS.DynamoDB.DocumentClient({region})
 // region and table name available in comments of lambda function
 const region = process.env.REGION
 const ddb_table_name = process.env.<YOUR_STORAGE_NAME>
-
 
 // update the /products "get" and "post" endpoints
  
