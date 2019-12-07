@@ -61,13 +61,13 @@ Please edit the file in your editor: my-app/amplify/backend/function/<function_n
 Next, update the function with the following changes:
 
 ```javascript
-// add these imports
-const AWS = require('aws-sdk')
-const uuid = require('uuid/v4')
-const docClient = new AWS.DynamoDB.DocumentClient({region})
 // region and table name available in comments of lambda function
 const region = process.env.REGION
 const ddb_table_name = process.env.<YOUR_STORAGE_NAME>
+
+const AWS = require('aws-sdk')
+const uuid = require('uuid/v4')
+const docClient = new AWS.DynamoDB.DocumentClient({region})
 
 // update the /products "get" and "post" endpoints
  
