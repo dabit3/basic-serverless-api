@@ -20,9 +20,11 @@ Next, create the amplify project and add the database:
 $ amplify init
 
 $ amplify add storage
+
+? Please select from one of the below mentioned services: NoSQL Database
 ```
 
-Create a database with the following fields:
+Create a database with the following columns:
 
 ```
 id: string
