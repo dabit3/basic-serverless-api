@@ -17,9 +17,9 @@ $ npm install aws-amplify
 Next, create the amplify project and add the database:
 
 ```sh
-amplify init
+$ amplify init
 
-amplify add storage
+$ amplify add storage
 ```
 
 Create a database with the following fields:
@@ -227,4 +227,10 @@ const form = {
 }
 
 export default App;
+```
+
+### Test everything out
+
+```sh
+$ npm start
 ```
