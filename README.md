@@ -33,8 +33,10 @@ description: string
 price: number
 
 ? Please choose partition key for the table: id
-? Do you want to add a sort key to your table? Yes
+? Do you want to add a sort key to your table? Y
 ? Please choose sort key for the table: name
+? Do you want to add global secondary indexes to your table? N
+? Do you want to add a Lambda Trigger for your Table? N
 ```
 
 Next, create the API:
