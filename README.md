@@ -113,7 +113,7 @@ app.post('/products', async function(req, res) {
 })
 ```
 
-Next, update the dependencies in the lambda function to include uuid:
+Next, update the dependencies in the lambda function to include __uuid__:
 
 __amplify/backend/function/<function_name>/src/package.json__
 
