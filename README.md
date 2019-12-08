@@ -115,7 +115,7 @@ app.post('/products', async function(req, res) {
 
 Next, update the dependencies in the lambda function to include uuid:
 
-__my-app/amplify/backend/function/<function_name>/src/index.js__
+__amplify/backend/function/<function_name>/src/package.json__
 
 ```json
 "dependencies": {
